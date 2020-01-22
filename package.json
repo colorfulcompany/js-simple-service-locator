@@ -2,7 +2,7 @@
   "name": "simple-service-locator",
   "version": "0.1.0",
   "description": "Simple Service Locator for JavaScript",
-  "main": "index.js",
+  "main": "./src/service-locator.js",
   "author": "Colorful Company,Inc.",
   "license": "BSD-2-Clause",
   "devDependencies": {
