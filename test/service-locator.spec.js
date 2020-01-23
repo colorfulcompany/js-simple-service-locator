@@ -9,6 +9,24 @@ describe('ServiceLocator', () => {
     ServiceLocator.reset()
   })
 
+  describe('.clone()', () => {
+    let locator
+    beforeEach(() => {
+      locator = ServiceLocator.clone()
+      Object.defineProperty(locator, 'name', { value: 'ClonedLocator' })
+    })
+
+    it('resitries are different', () => {
+      ServiceLocator.register('assert', assert)
+      locator.register('power', assert)
+
+      assert.notDeepEqual(
+        ServiceLocator.entries(),
+        locator.entries()
+      )
+    })
+  })
+
   describe('.entries', () => {
     describe('empty', () => {
       it('return zero size array', () => {

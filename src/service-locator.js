@@ -6,6 +6,23 @@ class ServiceNotRegistered extends Error {
 }
 
 class ServiceLocator {
+  /**
+   * @param {string} name
+   * @return {object}
+   */
+  static clone (name = 'cloned') {
+    const cloned = function () {}
+
+    for (const prop of Object.getOwnPropertyNames(this)) {
+      if (prop !== 'length' && prop !== 'name' && typeof this[prop] !== 'undefined') {
+        Object.defineProperty(cloned, prop, { value: this[prop] })
+      }
+    }
+    Object.defineProperty(cloned, 'name', { value: name })
+
+    return cloned
+  }
+
   static prepare () {
     if (!this._registry) this._registry = {}
   }
