@@ -11,19 +11,31 @@ describe('ServiceLocator', () => {
 
   describe('.clone()', () => {
     let locator
-    beforeEach(() => {
-      locator = ServiceLocator.clone()
-      Object.defineProperty(locator, 'name', { value: 'ClonedLocator' })
+
+    describe('cloned locator entries', () => {
+      beforeEach(() => {
+        locator = ServiceLocator.clone('ClonedLocator')
+        ServiceLocator.register('assert', assert)
+        locator.register('power', assert)
+      })
+
+      it('different', () => {
+        assert.notDeepEqual(
+          ServiceLocator.entries(),
+          locator.entries()
+        )
+      })
     })
 
-    it('resitries are different', () => {
-      ServiceLocator.register('assert', assert)
-      locator.register('power', assert)
+    describe('locator already has entries', () => {
+      beforeEach(() => {
+        ServiceLocator.register('assert', assert)
+        locator = ServiceLocator.clone('ClonedLocator')
+      })
 
-      assert.notDeepEqual(
-        ServiceLocator.entries(),
-        locator.entries()
-      )
+      it('cloned locator has nothing', () => {
+        assert.deepEqual(locator.entries(), [])
+      })
     })
   })
 

@@ -14,7 +14,7 @@ class ServiceLocator {
     const cloned = function () {}
 
     for (const prop of Object.getOwnPropertyNames(this)) {
-      if (prop !== 'length' && prop !== 'name' && typeof this[prop] !== 'undefined') {
+      if (typeof this[prop] === 'function') {
         Object.defineProperty(cloned, prop, { value: this[prop] })
       }
     }
