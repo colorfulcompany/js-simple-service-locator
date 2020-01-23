@@ -1,6 +1,6 @@
 {
   "name": "simple-service-locator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple Service Locator for JavaScript",
   "main": "./src/service-locator.js",
   "author": "Colorful Company,Inc.",
